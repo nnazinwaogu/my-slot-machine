@@ -4,17 +4,7 @@ Needed: User input, User balance, spin/play function, lines/wheels"""
 #imports
 import random
 
-def lines(startingbalance, currbalance, netpos, spins, wagered):
-    #this operates as a simple, 3-row, 1-line slot machine
-    apple = 1
-    orange = 1.5
-    banana = 2
-    lines = [[apple, orange, banana],
-             [orange, banana, apple],
-             [banana, apple, orange],]
-    multiplerArray = [1, 2, 1, 4, 1, 6, 1, 8, 1, 10, 1, 12]
-    
-
+def bet(startingbalance, currbalance, netpos, spins, wagered):
     while True:
         userInput = input(f"Current Balance: ${currbalance} | P/L: ${netpos}\nEnter 1 to Spin, 2 to Quit:  \n")
         if int(userInput) != 1 and int(userInput) != 2:
@@ -28,8 +18,7 @@ def lines(startingbalance, currbalance, netpos, spins, wagered):
             print(f"Oops, Your current balance is: ${currbalance}. You must deposit to continue.\n")
             print("When you return to the menu, spin again and you wil be prompted to deposit!\n")
             leave(startingbalance, currbalance, netpos, spins, wagered)
-            userInput == "2" 
-            continue
+            break
         else:
             while True:
                 bet = input(f"Current Balance: ${currbalance} -- Enter your wager amount:  \n")
@@ -37,38 +26,51 @@ def lines(startingbalance, currbalance, netpos, spins, wagered):
                     print("Haha! You can't do that!\n")
                     continue
                 else:
+                    currbalance, netpos, spins, wagered = lines(currbalance, netpos, spins, wagered, bet) #updating modified variables
                     break
-            spinNum1 = random.randint(0,2)
-            spinNum2 = random.randint(0,2)
-            spinNum3 = random.randint(0,2)
-            multiNum = random.randint(0,11)
-            result1 = lines[0][spinNum1]
-            result2 = lines[1][spinNum2]
-            result3 = lines[2][spinNum3]
-            multipler = multiplerArray[multiNum]
-        
-            if (result1) == (result2) == (result3):
-                overall_result = (result1) + (result2) + (result3) 
-                print(f"You've spun a: {result1}, {result2}, and {result3}!\nWinnings: ${overall_result}\n")
-                print(f"Spinning multipliers...\nYou've spun a: {multipler}x multiplier!\n")
-                overall_result = overall_result * multipler #ignoring wager amount in resultant calculation reduces logic by instruction or two
-                print(f"Overall Total: ${overall_result}\n")
-                currbalance += overall_result
-                print(f"New wallet balance is: ${currbalance}\n")
-                netpos += overall_result
-                spins += 1
-                wagered += int(bet)
-                continue
-            else:
-                overall_result = 0 - int(bet) # can't ignore, needed here
-                print(f"You've spun: {result1}, {result2}, {result3}, must spin 3 in a row!\n")
-                currbalance += overall_result
-                print(f"New wallet balance is: ${currbalance}\n")
-                netpos += overall_result 
-                spins += 1
-                wagered += int(bet)
-                continue
-    return None
+            continue
+    return startingbalance, currbalance, netpos, spins, wagered
+    
+
+def lines(currbalance, netpos, spins, wagered, bet): #want to separate the slot function logic from the betting logic 
+    #this operates as a simple, 3-row, 1-line slot machine
+    apple = 1
+    orange = 1.5
+    banana = 2
+    lines = [[apple, orange, banana],
+             [orange, banana, apple],
+             [banana, apple, orange],]
+    multiplerArray = [1, 2, 1, 4, 1, 6, 1, 8, 1, 10, 1, 12]
+    
+    spinNum1 = random.randint(0,2)
+    spinNum2 = random.randint(0,2)
+    spinNum3 = random.randint(0,2)
+    multiNum = random.randint(0,11)
+    result1 = lines[0][spinNum1]
+    result2 = lines[1][spinNum2]
+    result3 = lines[2][spinNum3]
+    multipler = multiplerArray[multiNum]
+
+    if (result1) == (result2) == (result3):
+        overall_result = (result1) + (result2) + (result3) 
+        print(f"You've spun a: {result1}, {result2}, and {result3}!\nWinnings: ${overall_result}\n")
+        print(f"Spinning multipliers...\nYou've spun a: {multipler}x multiplier!\n")
+        overall_result = overall_result * multipler #ignoring wager amount in resultant calculation reduces logic by instruction or two
+        print(f"Overall Total: ${overall_result}\n")
+        currbalance += overall_result
+        print(f"New wallet balance is: ${currbalance}\n")
+        netpos += overall_result
+        spins += 1
+        wagered += int(bet)
+    else:
+        overall_result = 0 - int(bet) # can't ignore, needed here
+        print(f"You've spun: {result1}, {result2}, {result3}, must spin 3 in a row!\n")
+        currbalance += overall_result
+        print(f"New wallet balance is: ${currbalance}\n")
+        netpos += overall_result 
+        spins += 1
+        wagered += int(bet)
+    return currbalance, netpos, spins, wagered
         
 def play(startingbalance, currbalance, netpos, spins, wagered):
     while True:
@@ -76,18 +78,18 @@ def play(startingbalance, currbalance, netpos, spins, wagered):
         if spin == "1":
             if currbalance <= 0:
                 print(f"Balance: ${currbalance}\nMust Deposit\n")
-                deposit(startingbalance, currbalance, netpos, spins, wagered)
+                startingbalance, currbalance = deposit(startingbalance, currbalance)
                 continue
             else:
                 while True:
                     result = input("Do you want to deposit more(1) or not(2)?:  \n")
                     if result == "1":
-                        deposit(startingbalance, currbalance, netpos, spins, wagered)
+                        startingbalance, currbalance = deposit(startingbalance, currbalance)
                         continue
                     elif result == "2":
                         print("Game Loading...,\n")
-                        lines(startingbalance, currbalance, netpos, spins, wagered)
-                        continue 
+                        startingbalance, currbalance, netpos, spins, wagered = bet(startingbalance, currbalance, netpos, spins, wagered)
+                        break 
                     else:
                         print("Silly Goose! Pick 1 or 2!\n")
                         continue
@@ -97,21 +99,21 @@ def play(startingbalance, currbalance, netpos, spins, wagered):
         else:
             print("Silly Goose! Pick 1 or 2!\n")
             continue
-    return None 
+    return startingbalance, currbalance, netpos, spins, wagered 
 
-def deposit(startingbalance, currbalance, netpos, spins, wagered): 
+def deposit(startingbalance, currbalance): 
     while True:
         currbalancestr = input(f"Balance: ${currbalance} --- How much are you depositing?:  \n")
         if (int(currbalancestr) >= 0):
-            currbalance = int(currbalancestr)
+            currbalance += int(currbalancestr)
             if startingbalance == 0:
                 startingbalance = currbalance
-            lines(startingbalance, currbalance, netpos, spins, wagered)
             break                 
         else:
             print("Silly Goose! Thats not a valid input\n")
             continue 
-    return None
+    print(f"New Balance: ${currbalance}")
+    return startingbalance, currbalance
 
 def leave(startingbalance, currbalance, netpos, spins, wagered):
     print("---RESULTS---\n")
@@ -142,15 +144,14 @@ def main():
     while True:
         result = input(" Anyhoo, were you looking to Play(1) or Leave Now(2) (while you still can!):  \n")
         if result == "1":
-            play(startbal, currbal, netpos, spins, wagered)
+            startbal, currbal, netpos, spins, wagered = play(startbal, currbal, netpos, spins, wagered)
             break
         elif result == "2":
-            leave(startbal, currbal, netpos, spins, wagered)
             break
         else:
             print("Silly goose, pick between 1 or 2!\n")
             continue
-    return   
+    return leave(startbal, currbal, netpos, spins, wagered)  
 
 if __name__ == "__main__":
     main() 
