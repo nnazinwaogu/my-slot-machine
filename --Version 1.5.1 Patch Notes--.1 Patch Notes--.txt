@@ -14,7 +14,8 @@ slot_machine_1.5:
     lines(...) > removed the continue statements from each if-else condition as the function does not loop anymore
     ~included that the function returns the input arguments to fix the updating issue
 
-    play(...) > updated starting balance and current balance to the return of deposit(...) on various lines                    >removed lines function call from this function
+    play(...) > updated starting balance and current balance to the return of deposit(...) on various lines
+    >removed lines function call from this function
     ~updated the input arguements of play(...) by assigning them to the return of bet(...)
     ~fixed a buggy else condition (line 88) which allowed for infinte looping
 
