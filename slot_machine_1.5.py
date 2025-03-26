@@ -1,5 +1,4 @@
-"""Slot Machine Project:
-Needed: User input, User balance, spin/play function, lines/wheels"""
+"""Author: Nnazirim Nwaogu"""
 
 #imports
 import random
