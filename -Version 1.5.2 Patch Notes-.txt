@@ -1,0 +1,21 @@
+-Version 1.5.2 Patch Notes-
+
+Updates:
+slot_machine_1.5 - 
+    bet(...) > removed redundent integer type-casting for currbalance as it is already an int
+    ~ casted bet variable to int and stored it in intBet() for better usage
+
+    fruitTupleBuilder(...) > implemented tuples to store the fruits of the slot
+    ~ added a tuple builder class for fast construction of fruit variables
+
+    lines(...) > added some comments for more clarity
+    ~ added indexing when needed to the resultsX variables as they are tuples
+
+    Reorganized parts of the code base to enhance the organization,
+    as in, having all the functions until play(...) first (utilty functions),
+    then play(...) functions as the observer/menu object, and lastly main() where the
+    program runs  
+
+Need to do: 
+    >change balance, bet, betting result (and other?) variables to floats to account for all rational numbers > 0
+    >import time to add sleep() functionally to increase realism within simulation
