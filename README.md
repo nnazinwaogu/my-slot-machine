@@ -166,7 +166,6 @@ Potential features for future versions:
 - **Save/Load**: Persistent player accounts and game progress
 - **Multiple Lines**: Traditional multi-line slot machine mechanics
 
----
 
 ## Version History
 
@@ -185,3 +184,4 @@ This project is licensed under the MIT License. You are free to use, modify, and
 - ✓ Private use
 - ✗ Liability
 - ✗ Warranty 
+
