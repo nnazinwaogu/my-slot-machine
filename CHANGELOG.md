@@ -20,7 +20,7 @@ Complete refactoring of the slot machine logic and function architecture for imp
 - Definition updated to account for new variables
 - Changed fruit values to match bet amount (added significance to wagers)
 - Restructured slot machine from 3 separate lists to a 2D list for cleaner data structure
-- Integrated wagering logic before spinning (temporary solution; may be reverted in future refactor)
+- Integrated wagering logic before spinning (temporary solution; may be changed in future refactor)
 - Added multiplier array system for varied payout outcomes
 - Rewrote result logic for better mathematical soundness and realism
 - Fixed logic for non-winning spins
