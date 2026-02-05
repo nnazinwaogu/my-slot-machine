@@ -169,6 +169,9 @@ Potential features for future versions:
 
 ## Version History
 
+**Current Version:** 1.5.2  
+**Latest Stable:** 1.5.2 
+
 For detailed technical changes and patch notes, see [CHANGELOG.md](CHANGELOG.md).
 
 ---

@@ -14,7 +14,7 @@ All notable changes to the Slot Machine Game project are documented in this file
 ### Overview
 Complete refactoring of the slot machine logic and function architecture for improved code clarity and maintainability.
 
-### Changed
+### Changes
 
 #### `lines()` Function
 - Definition updated to account for new variables
@@ -51,7 +51,7 @@ Complete refactoring of the slot machine logic and function architecture for imp
 ## Version Information
 
 **Current Version:** 1.5.2  
-**Latest Stable:** 1.5.1  
+**Latest Stable:** 1.5.2  
 **Author:** Nnazirim Nwaogu
 
 For usage information, see [README.md](README.md).
