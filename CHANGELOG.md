@@ -2,6 +2,47 @@
 
 All notable changes to the Slot Machine Game project are documented in this file.
 
+## [2.0.0] - 2026-02-18
+
+### Overview
+Complete rewrite of the slot machine game with comprehensive testing infrastructure, 3x3 grid implementation, and multi-line betting mechanics.
+
+### Breaking Changes
+- Complete architectural overhaul from version 1.5
+- New 3x3 grid display system
+- Multi-line betting (up to 8 lines)
+- Comprehensive pytest test suite
+- Modular function structure
+
+### New Features
+- **3x3 Grid Display**: Enhanced visual representation with proper formatting
+- **Multi-Line Betting**: 8 traditional slot machine paylines
+- **Comprehensive Testing**: 28 pytest tests with 70% coverage
+- **Enhanced Symbols**: Weighted random generation for realistic odds
+- **Multiplier System**: 2x, 4x, 6x, 8x, 10x, 12x multipliers
+- **Better UI**: Improved menu system and display formatting
+- **Modular Architecture**: Clean separation of concerns
+
+### Code Improvements
+- **Data Structures**: Optimized symbol definitions and payline configurations
+- **Function Organization**: Clear separation between game logic and UI
+- **Error Handling**: Improved input validation and error messages
+- **Performance**: Optimized grid generation and win checking
+- **Maintainability**: Better variable naming and documentation
+
+### Testing Infrastructure
+- **pytest Framework**: Comprehensive test suite with 28 tests
+- **Coverage Reporting**: 70% test coverage with detailed reports
+- **Test Categories**: Unit, integration, performance, and edge case tests
+- **Mocking Support**: Input and random function mocking for reliable tests
+
+### Known Issues
+- Integration tests failing due to input handling (StopIteration errors)
+- Edge case tests failing with OSError (stdin capture issues)
+- Coverage at 70% (target is 90%+)
+
+---
+
 ## [1.5.2] - 2026-01-25
 
 ### Changes
@@ -50,8 +91,8 @@ Complete refactoring of the slot machine logic and function architecture for imp
 
 ## Version Information
 
-**Current Version:** 1.5.2  
-**Latest Stable:** 1.5.2  
+**Current Version:** 2.0.0  
+**Latest Stable:** 2.0.0  
 **Author:** Nnazirim Nwaogu
 
 For usage information, see [README.md](README.md).
